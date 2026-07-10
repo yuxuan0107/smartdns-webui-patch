@@ -2,47 +2,53 @@
 
 这是一个基于 [smartdns-webui](https://github.com/pymumu/smartdns-webui) 原版之上补全配置 UI 的项目。
 
-## 主要改进
+## 项目说明
 
-- 完整的配置管理界面（17个子菜单）
-- 多值配置支持（如多个 DNS 服务器）
-- 保存配置后自动重启服务
-- 重启后自动刷新页面
-- 中文界面
-- 所有配置项分类展示
+本项目在原版 SmartDNS Web 管理界面的基础上，增加了一个**参数配置**的二级菜单。通过该菜单，用户可以在 Web 界面中完成所有原本需要手动编辑配置文件才能实现的配置功能，无需再通过 SSH 或其他方式修改 `smartdns.conf` 文件。
+
+## 主要特性
+
+- **完整的配置管理**：支持 SmartDNS 所有配置项的 Web 界面管理
+- **17 个配置分类**：按功能将配置项分类展示，便于查找和管理
+- **多值配置支持**：支持添加多个 DNS 服务器、地址规则等重复配置项
+- **双栈支持**：所有监听配置均支持 IPv4/IPv6 双栈
+- **自动重启**：保存配置后可自动重启 SmartDNS 服务使配置生效
+- **自动刷新**：重启服务后自动重新加载最新配置
+- **中文界面**：所有按钮和提示信息均已汉化
+- **原始配置**：支持直接编辑配置文件原始文本
 
 ## 配置菜单结构
 
 ### 参数配置
 
-| 菜单项 | 说明 |
-|--------|------|
+| 菜单项 | 包含的配置项 |
+|--------|-------------|
 | 基本设置 | server-name, user, resolv-hostname |
-| 监听设置 | bind, bind-tcp, bind-tls, bind-https（支持双栈） |
-| TLS 证书 | bind-cert-key-file, bind-cert-file, bind-cert-generate |
-| 缓存设置 | cache-size, cache-mem-size, cache-persist, prefetch-domain, serve-expired |
-| DNS 服务器 | server, server-tcp, server-tls, server-https, bootstrap-dns |
+| 监听设置 | bind, bind-tcp, bind-tls, bind-https, tcp-idle-time（支持双栈） |
+| TLS 证书 | bind-cert-key-file, bind-cert-file, bind-cert-generate, bind-cert-san, bind-cert-key-pass |
+| 缓存设置 | cache-size, cache-mem-size, cache-persist, cache-file, cache-checkpoint-time, prefetch-domain, serve-expired, serve-expired-ttl, serve-expired-reply-ttl |
+| DNS 服务器 | server, server-tcp, server-tls, server-https, server-quic, server-http3, bootstrap-dns |
 | 代理设置 | proxy-server |
-| 过滤规则 | bogus-nxdomain, blacklist-ip, whitelist-ip, ignore-ip |
+| 过滤规则 | bogus-nxdomain, blacklist-ip, whitelist-ip, ignore-ip, ip-alias |
 | 地址规则 | address, cname, srv-record, txt-record, https-record |
 | 分流规则 | nameserver, domain-rules, domain-set, client-rules |
-| IPSet/NFTSet | ipset, nftset, ip-rules, ip-set |
-| 日志设置 | log-level, log-file, log-size, log-num, log-console |
-| 审计设置 | audit-enable, audit-file, audit-size, audit-num |
-| 高级选项 | speed-check-mode, response-mode, dualstack-ip-selection |
+| IPSet/NFTSet/IP规则 | ipset, ipset-timeout, ipset-no-speed, nftset, nftset-timeout, nftset-no-speed, nftset-debug, ip-rules, ip-set |
+| 日志设置 | log-level, log-file, log-size, log-num, log-file-mode, log-console, log-syslog |
+| 审计设置 | audit-enable, audit-SOA, audit-file, audit-size, audit-num, audit-file-mode, audit-console, audit-syslog |
+| 高级选项 | speed-check-mode, response-mode, force-AAAA-SOA, force-qtype-SOA, max-reply-ip-num, max-query-limit, dualstack-ip-selection, dualstack-ip-selection-threshold, dualstack-ip-allow-force-AAAA, edns-client-subnet, expand-ptr-from-address |
 | TTL 设置 | rr-ttl, rr-ttl-min, rr-ttl-max, rr-ttl-reply-max |
 | DNS64 | dns64 |
 | 分组规则 | group-begin, group-match, group-end |
-| 其他设置 | ddns-domain, local-domain, hosts-file, data-dir |
+| 其他设置 | ddns-domain, local-domain, mdns-lookup, hosts-file, data-dir, conf-file, ca-file, ca-path, dnsmasq-lease-file, odhcpd-lease-file |
 | 原始配置 | 直接编辑配置文件原始文本 |
 
-## 按钮功能
+## 操作按钮
 
 | 按钮 | 功能 |
 |------|------|
-| 重新加载 | 从服务器重新加载配置 |
+| 重新加载 | 从服务器重新加载配置文件 |
 | 保存配置 | 保存当前配置到服务器 |
-| 重启服务 | 重启 SmartDNS 服务 |
+| 重启服务 | 重启 SmartDNS 服务使配置生效 |
 
 ## 安装部署
 
@@ -85,7 +91,10 @@ smartdns-ui.password password
 
 1. 访问 `http://<服务器IP>:6080`
 2. 输入用户名和密码登录
-3. 点击左侧菜单配置 SmartDNS
+3. 点击左侧菜单"参数配置"
+4. 选择对应的配置分类进行修改
+5. 点击"保存配置"保存修改
+6. 点击"重启服务"使配置生效
 
 ## 致谢
 

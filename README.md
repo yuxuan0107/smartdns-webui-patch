@@ -17,6 +17,14 @@
 - **中文界面**：所有按钮和提示信息均已汉化
 - **原始配置**：支持直接编辑配置文件原始文本
 
+## 系统要求
+
+- **操作系统**: Linux (Debian/Ubuntu/CentOS/OpenWrt 等)
+- **架构**: x86_64, ARM, MIPS
+- **内存**: 建议 128MB+
+- **磁盘空间**: 50MB+
+- **网络**: 需要访问上游 DNS 服务器
+
 ## 一键安装（推荐）
 
 ### 下载安装包
@@ -97,53 +105,25 @@ smartdns-ui.password password
 
 ## 界面截图
 
-### 登录页面
-![登录页面](screenshots/01-login.png)
+| 登录页面 | 仪表盘 | 基本设置 |
+|:--------:|:------:|:--------:|
+| ![登录](screenshots/01-login.png) | ![仪表盘](screenshots/02-dashboard.png) | ![基本设置](screenshots/03-config-basic.png) |
 
-### 仪表盘
-![仪表盘](screenshots/02-dashboard.png)
+| 监听设置 | TLS 证书 | 缓存设置 |
+|:--------:|:--------:|:--------:|
+| ![监听设置](screenshots/04-config-bind.png) | ![TLS 证书](screenshots/07-config-tls.png) | ![缓存设置](screenshots/08-config-cache.png) |
 
-### 基本设置
-![基本设置](screenshots/03-config-basic.png)
+| DNS 服务器 | 代理设置 | 过滤规则 |
+|:----------:|:--------:|:--------:|
+| ![DNS 服务器](screenshots/05-config-server.png) | ![代理设置](screenshots/09-config-proxy.png) | ![过滤规则](screenshots/10-config-filter.png) |
 
-### 监听设置
-![监听设置](screenshots/04-config-bind.png)
+| 地址规则 | 分流规则 | 日志设置 |
+|:--------:|:--------:|:--------:|
+| ![地址规则](screenshots/11-config-address.png) | ![分流规则](screenshots/12-config-nameserver.png) | ![日志设置](screenshots/13-config-log.png) |
 
-### TLS 证书
-![TLS 证书](screenshots/07-config-tls.png)
-
-### 缓存设置
-![缓存设置](screenshots/08-config-cache.png)
-
-### DNS 服务器
-![DNS 服务器](screenshots/05-config-server.png)
-
-### 代理设置
-![代理设置](screenshots/09-config-proxy.png)
-
-### 过滤规则
-![过滤规则](screenshots/10-config-filter.png)
-
-### 地址规则
-![地址规则](screenshots/11-config-address.png)
-
-### 分流规则
-![分流规则](screenshots/12-config-nameserver.png)
-
-### 日志设置
-![日志设置](screenshots/13-config-log.png)
-
-### 高级选项
-![高级选项](screenshots/14-config-advanced.png)
-
-### TTL 设置
-![TTL 设置](screenshots/15-config-ttl.png)
-
-### 其他设置
-![其他设置](screenshots/16-config-other.png)
-
-### 原始配置
-![原始配置](screenshots/06-config-raw.png)
+| 高级选项 | TTL 设置 | 其他设置 | 原始配置 |
+|:--------:|:--------:|:--------:|:--------:|
+| ![高级选项](screenshots/14-config-advanced.png) | ![TTL 设置](screenshots/15-config-ttl.png) | ![其他设置](screenshots/16-config-other.png) | ![原始配置](screenshots/06-config-raw.png) |
 
 ## 配置菜单结构
 
@@ -177,6 +157,63 @@ smartdns-ui.password password
 | 重新加载 | 从服务器重新加载配置文件 |
 | 保存配置 | 保存当前配置到服务器 |
 | 重启服务 | 重启 SmartDNS 服务使配置生效 |
+
+## 常见问题
+
+### Q: 安装后无法访问 Web 界面？
+
+**A:** 检查以下几点：
+1. SmartDNS 服务是否启动：`systemctl status smartdns`
+2. 端口是否开放：`ss -tlnp | grep 6080`
+3. 防火墙是否允许访问 6080 端口
+4. 配置文件中是否正确配置了 `smartdns-ui.ip`
+
+### Q: 保存配置后服务没有重启？
+
+**A:** 点击"重启服务"按钮，或手动执行：
+```bash
+systemctl restart smartdns
+```
+
+### Q: 如何修改默认密码？
+
+**A:** 两种方式：
+1. 在 Web 界面的"设置"页面修改
+2. 编辑 `/etc/smartdns/smartdns.conf` 中的 `smartdns-ui.password` 配置项
+
+### Q: 配置修改后没有生效？
+
+**A:** 请确保：
+1. 点击了"保存配置"按钮
+2. 点击了"重启服务"按钮
+3. 或手动执行 `systemctl restart smartdns`
+
+### Q: 如何备份配置文件？
+
+**A:** 配置文件位于 `/etc/smartdns/smartdns.conf`，可以使用以下命令备份：
+```bash
+cp /etc/smartdns/smartdns.conf /etc/smartdns/smartdns.conf.bak
+```
+
+### Q: 支持哪些 DNS 协议？
+
+**A:** SmartDNS 支持以下协议：
+- UDP (标准 DNS)
+- TCP (标准 DNS)
+- TLS (DNS Over TLS)
+- HTTPS (DNS Over HTTPS)
+- QUIC (DNS Over QUIC)
+- HTTP/3 (DNS Over HTTP/3)
+
+## 贡献
+
+欢迎提交 Issue 和 Pull Request！
+
+1. Fork 本仓库
+2. 创建特性分支 (`git checkout -b feature/your-feature`)
+3. 提交更改 (`git commit -m 'Add some feature'`)
+4. 推送到分支 (`git push origin feature/your-feature`)
+5. 创建 Pull Request
 
 ## 致谢
 

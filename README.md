@@ -4,44 +4,50 @@
 
 ## 主要改进
 
-### 新增功能
-- ✅ 完整的配置管理界面（17个子菜单）
-- ✅ 多值配置支持（如多个 DNS 服务器）
-- ✅ 保存配置后自动重启服务
-- ✅ 重启后自动刷新页面
-- ✅ 中文界面
-- ✅ 所有配置项分类展示
+- 完整的配置管理界面（17个子菜单）
+- 多值配置支持（如多个 DNS 服务器）
+- 保存配置后自动重启服务
+- 重启后自动刷新页面
+- 中文界面
+- 所有配置项分类展示
 
-### 配置菜单结构
+## 配置菜单结构
 
-📁 参数配置
-   ├── ⚙️ 基本设置
-   ├── 📶 监听设置（支持双栈）
-   ├── 🔒 TLS 证书
-   ├── 🗄️ 缓存设置
-   ├── 🌐 DNS 服务器（含 bootstrap-dns）
-   ├── 🛡️ 代理设置
-   ├── 🔍 过滤规则
-   ├── 📍 地址规则
-   ├── 🌳 分流规则
-   ├── 🛡️ IPSet/NFTSet/IP规则
-   ├── 📄 日志设置
-   ├── 📋 审计设置
-   ├── 🎚️ 高级选项
-   ├── ⏱️ TTL 设置
-   ├── 🔄 DNS64
-   ├── 🌳 分组规则
-   ├── ⚙️ 其他设置
-   └── 💻 原始配置
+### 参数配置
 
-### 按钮功能
-- **重新加载** - 从服务器重新加载配置
-- **保存配置** - 保存当前配置到服务器
-- **重启服务** - 重启 SmartDNS 服务
+| 菜单项 | 说明 |
+|--------|------|
+| 基本设置 | server-name, user, resolv-hostname |
+| 监听设置 | bind, bind-tcp, bind-tls, bind-https（支持双栈） |
+| TLS 证书 | bind-cert-key-file, bind-cert-file, bind-cert-generate |
+| 缓存设置 | cache-size, cache-mem-size, cache-persist, prefetch-domain, serve-expired |
+| DNS 服务器 | server, server-tcp, server-tls, server-https, bootstrap-dns |
+| 代理设置 | proxy-server |
+| 过滤规则 | bogus-nxdomain, blacklist-ip, whitelist-ip, ignore-ip |
+| 地址规则 | address, cname, srv-record, txt-record, https-record |
+| 分流规则 | nameserver, domain-rules, domain-set, client-rules |
+| IPSet/NFTSet | ipset, nftset, ip-rules, ip-set |
+| 日志设置 | log-level, log-file, log-size, log-num, log-console |
+| 审计设置 | audit-enable, audit-file, audit-size, audit-num |
+| 高级选项 | speed-check-mode, response-mode, dualstack-ip-selection |
+| TTL 设置 | rr-ttl, rr-ttl-min, rr-ttl-max, rr-ttl-reply-max |
+| DNS64 | dns64 |
+| 分组规则 | group-begin, group-match, group-end |
+| 其他设置 | ddns-domain, local-domain, hosts-file, data-dir |
+| 原始配置 | 直接编辑配置文件原始文本 |
+
+## 按钮功能
+
+| 按钮 | 功能 |
+|------|------|
+| 重新加载 | 从服务器重新加载配置 |
+| 保存配置 | 保存当前配置到服务器 |
+| 重启服务 | 重启 SmartDNS 服务 |
 
 ## 安装部署
 
 ### 前置要求
+
 - Node.js 18+
 - SmartDNS 已安装并配置 WebUI 插件
 
@@ -66,7 +72,7 @@ cp -r out/* /usr/share/smartdns/wwwroot/
 
 在 smartdns.conf 中添加：
 
-```
+```conf
 # web ui plugin
 plugin smartdns_ui.so
 smartdns-ui.www-root /usr/share/smartdns/wwwroot

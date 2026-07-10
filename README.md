@@ -6,6 +6,26 @@
 
 本项目在原版 SmartDNS Web 管理界面的基础上，增加了一个**参数配置**的二级菜单。通过该菜单，用户可以在 Web 界面中完成所有原本需要手动编辑配置文件才能实现的配置功能，无需再通过 SSH 或其他方式修改 `smartdns.conf` 文件。
 
+## 界面截图
+
+### 登录页面
+![登录页面](screenshots/01-login.png)
+
+### 仪表盘
+![仪表盘](screenshots/02-dashboard.png)
+
+### 基本设置
+![基本设置](screenshots/03-config-basic.png)
+
+### 监听设置
+![监听设置](screenshots/04-config-bind.png)
+
+### DNS 服务器
+![DNS 服务器](screenshots/05-config-server.png)
+
+### 原始配置
+![原始配置](screenshots/06-config-raw.png)
+
 ## 主要特性
 
 - **完整的配置管理**：支持 SmartDNS 所有配置项的 Web 界面管理

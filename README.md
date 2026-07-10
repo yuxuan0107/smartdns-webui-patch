@@ -20,10 +20,21 @@
 ## 系统要求
 
 - **操作系统**: Linux (Debian/Ubuntu/CentOS/OpenWrt 等)
-- **架构**: x86_64, ARM, MIPS
+- **架构**: x86_64 (当前打包版本)
 - **内存**: 建议 128MB+
 - **磁盘空间**: 50MB+
 - **网络**: 需要访问上游 DNS 服务器
+
+### 其他架构支持
+
+当前发布包仅支持 x86_64 架构。如需 ARM、MIPS 等架构支持，需要在对应架构的机器上重新编译：
+
+```bash
+# 在目标架构机器上执行
+git clone https://github.com/yuxuan0107/smartdns-webui-patch.git
+cd smartdns-webui-patch
+./build-release.sh
+```
 
 ## 一键安装（推荐）
 

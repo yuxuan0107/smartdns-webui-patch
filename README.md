@@ -1,6 +1,6 @@
 # smartdns-webui-patch
 
-这是一个基于 [smartdns-webui](https://github.com/pymumu/smartdns-webui) 原版之上补全配置 UI 的项目。
+这是一个基于 [smartdns-webui](https://github.com/pymumu/smartdns-webui) 原版之上补全配置功能的项目。
 
 ## 项目说明
 

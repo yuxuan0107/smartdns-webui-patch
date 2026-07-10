@@ -20,8 +20,38 @@
 ### 监听设置
 ![监听设置](screenshots/04-config-bind.png)
 
+### TLS 证书
+![TLS 证书](screenshots/07-config-tls.png)
+
+### 缓存设置
+![缓存设置](screenshots/08-config-cache.png)
+
 ### DNS 服务器
 ![DNS 服务器](screenshots/05-config-server.png)
+
+### 代理设置
+![代理设置](screenshots/09-config-proxy.png)
+
+### 过滤规则
+![过滤规则](screenshots/10-config-filter.png)
+
+### 地址规则
+![地址规则](screenshots/11-config-address.png)
+
+### 分流规则
+![分流规则](screenshots/12-config-nameserver.png)
+
+### 日志设置
+![日志设置](screenshots/13-config-log.png)
+
+### 高级选项
+![高级选项](screenshots/14-config-advanced.png)
+
+### TTL 设置
+![TTL 设置](screenshots/15-config-ttl.png)
+
+### 其他设置
+![其他设置](screenshots/16-config-other.png)
 
 ### 原始配置
 ![原始配置](screenshots/06-config-raw.png)
